@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  v-monitor-clickhouse:
+    image: clickhouse:latest
+    container_name: v-monitor-clickhouse
+    ports:
+      - '8123:8123'
+      - '9000:9000'
+    environment:
+      - CLICKHOUSE_USER=default
+      - CLICKHOUSE_PASSWORD=123456
+      - CLICKHOUSE_DATABASE=default
+  v-monitor-postgres:
+    image: bitnami/postgresql:latest
+    container_name: v-monitor-postgres
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRESQL_USERNAME=postgres
+      - POSTGRESQL_PASSWORD=123456
+      - POSTGRESQL_DATABASE=postgres
+    volumes:
+      - ./postgresql_data:/bitnami/postgresql
+networks:
+  default:
+    name: v-monitor-network
+    driver: bridge

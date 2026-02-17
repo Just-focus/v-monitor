@@ -1,0 +1,61 @@
+{
+  "name": "v-monitor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint:prettier": "prettier --write \"**/*.{js,ts,mjs,cjs,json,tsx,css,less,scss,vue,html,md}\"",
+    "lint:eslint": "eslint apps/ packages/ --fix --ext .js,.ts,.mjs,.cjs,.tsx,.vue  --ignore-pattern '**/*.d.ts' --ignore-pattern 'packages/core/build/types/**/*'",
+    "spellcheck": "cspell lint --no-progress --show-suggestions --no-summary --no-color --exclude '**/coverage/**/*' --exclude '**/components/ui/**/*' \"(packages|apps)/**/*.{js,ts,mjs,cjs,json,tsx,css,less,scss,vue,html,md}\"",
+    "lint": "pnpm lint:prettier & pnpm lint:eslint & pnpm spellcheck",
+    "commit": "git-cz",
+    "prepare": "husky",
+    "test": "pnpm -r test",
+    "test:watch": "pnpm -r test:watch",
+    "test:coverage": "pnpm -r test:coverage",
+    "docker:start": "docker compose -p v-monitor -f .dccontainer/docker-compose.yml up -d",
+    "build:watch": "turbo build:watch",
+    "build:lib": "turbo build:lib",
+    "build:server": "turbo build:server",
+    "start:dev": "turbo start:dev",
+    "dev": "turbo dev"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.13.1",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.1",
+    "@commitlint/config-conventional": "^19.8.1",
+    "@cspell/dict-lorem-ipsum": "^4.0.5",
+    "@eslint/js": "^9.34.0",
+    "@types/jest": "^30.0.0",
+    "@types/jsdom": "^27.0.0",
+    "@types/node": "^24.3.0",
+    "commitizen": "^4.3.1",
+    "cspell": "^9.2.0",
+    "cz-git": "^1.12.0",
+    "eslint": "^9.34.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.4",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.20",
+    "eslint-plugin-vue": "^10.4.0",
+    "globals": "^16.3.0",
+    "husky": "^9.1.7",
+    "jest": "^30.2.0",
+    "jest-environment-jsdom": "^30.2.0",
+    "jsdom": "^27.0.1",
+    "prettier": "^3.6.2",
+    "ts-jest": "^29.4.5",
+    "tsup": "^8.5.0",
+    "turbo": "^2.6.0",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.41.0"
+  }
+}
